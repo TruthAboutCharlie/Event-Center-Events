@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        html {
+            font-size: 18px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #22223b;
+            background: #f8f9fa;
+        }
+        body {
+            line-height: 1.7;
+            background: #f8f9fa;
+            margin: 0;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #22223b;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        h1 { font-size: 2.2rem; }
+        h2 { font-size: 1.7rem; }
+        h3 { font-size: 1.3rem; }
+        .site-header,
+        .site-footer {
+            font-size: 1.1rem;
+        }
+        .menu-item,
+        .menu-category,
+        .menu-list,
+        .events,
+        .event,
+        section,
+        p,
+        li {
+            font-size: 1.1rem;
+        }
+        .menu-item {
+            line-height: 1.5;
+        }
+        .event,
+        .menu-item {
+            padding: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            background: #fff;
+            box-sizing: border-box;
+        }
+        .menu-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .menu-category {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .food-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 0.75rem;
+            vertical-align: middle;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .site-footer {
+            background: #22223b;
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem 0;
+            margin-top: 2rem;
+            border-radius: 0 0 8px 8px;
+        }
+        .site-header {
+            background: #22223b;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            flex-wrap: wrap;
+        }
+        .site-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f2e9e4;
+            text-decoration: none;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar a {
+            color: #f2e9e4;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .navbar a:hover {
+            color: #9a8c98;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .search-bar input[type="text"] {
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .search-bar button {
+            padding: 0.4rem 1rem;
+            border: none;
+            border-radius: 4px;
+            background: #4a4e69;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-bar button:hover {
+            background: #22223b;
+        }
+        .form-section {
+            margin-bottom: 2rem;
+        }
+        .form-container {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .form-container label {
+            font-weight: 500;
+        }
+        .form-container input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .button {
+            background: #4a4e69;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .button:hover {
+            background: #22223b;
+        }
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .events-flexbox {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .event {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 1rem;
+            text-align: center;
+            transition: box-shadow 0.2s;
+        }
+        .event img {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 6px;
+            margin-bottom: 0.7rem;
+        }
+        .event h3 {
+            margin: 0.5rem 0 0.3rem 0;
+            color: #4a4e69;
+        }
+        .event p {
+            color: #555;
+        }
+        @media (max-width: 900px) {
+            .menu-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            html { font-size: 16px; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.2rem; }
+            h3 { font-size: 1rem; }
+            .site-header, .site-footer { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html" class="site-logo">Event Center</a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button type="submit">Search</button>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <section class="form-section">
+            <div class="form-container">
+                <form action="/action_page.php">
+                    <label for="fname">First name:</label><br>
+                    <input type="text" id="fname" name="fname" value="John"><br>
+                    <label for="lname">Last name:</label><br>
+                    <input type="text" id="lname" name="lname" value="Doe"><br>
+                    <input class="button" type="submit" value="Submit">
+                </form>
+            </div>
+        </section>
+
+        <section class="events">
+            <h2>Upcoming Events (Flexbox Approach)</h2>
+            <div class="events-flexbox">
+                <article class="event">
+                    <img src="https://plus.unsplash.com/premium_photo-1739401922186-0ef2e42d9cce?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Event 1">
+                    <h3>Romantic Starry Night Dance</h3>
+                    <p>Join us as we dance under the stars!</p>
+                </article>
+                <article class="event">
+                    <img src="https://images.unsplash.com/photo-1573524793986-ba272ecb60fa?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Event 2">
+                    <h3>70's Retro Disco Party</h3>
+                    <p>Join us for a night of disco fever, 70's style! Music, elevator-shoes, three-piece leisure suits!</p>
+                </article>
+                <article class="event">
+                    <img src="https://media.istockphoto.com/id/2191575972/photo/happy-crazy-friends-in-funny-wigs-eyeglasses-celebrate-party-headshot-portrait.jpg?s=1024x1024&w=is&k=20&c=dGLXS1BmvkLI8QWMMr6NboE1MjHRn_beWzFZ82y8IO8=" alt="Event 3">
+                    <h3>80's Retro Night Dance Party</h3>
+                    <p>Join us for a night of 80's retro fever! Music, neon lights, mohawks, skinny-ties & more!</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="events">
+            <h2>Upcoming Events</h2>
+            <ul>
+                <li>Starry Night Dance, under the Stars: 6/6/2025 from 7PM to 2AM</li>
+                <li>70's Retro Disco Party: 6/13/2025 from 7PM to 2AM</li>
+                <li>80's Retro Night Dance Party: 6/20/2025 from 7PM to 2AM</li>
+            </ul>
+        </section>
+
+        <section class="menu" id="menu">
+            <h2>Menu</h2>
+            <div class="menu-list">
+                <div class="menu-category">
+                    <h3>Appetizers</h3>
+                    <ul>
+                        <li class="menu-item">
+                            <img src="https://thumbs.dreamstime.com/b/indulge-creamy-bacon-stuffed-mushrooms-delicious-closeup-recipe-featuring-tiltshift-baking-tray-experience-decadent-350822873.jpg?w=992" alt="Stuffed Mushrooms" class="food-img">
+                            Stuffed Mushrooms - $8.99
+                        </li>
+                        <li class="menu-item">
+                            <img src="https://thumbs.dreamstime.com/z/italian-food-capresse-salad-skewers-extra-virgin-olive-oil-jar-horizontal-shot-286963162.jpg?ct=jpeg" alt="Caprese Skewers" class="food-img">
+                            Caprese Skewers - $9.99
+                        </li>
+                        <li class="menu-item">
+                            <img src="https://thumbs.dreamstime.com/z/italian-tomato-bruschetta-basil-crispy-toasted-bread-savor-taste-italy-vibrant-served-golden-garnished-383403161.jpg?ct=jpeg" alt="Tomato Bruschetta" class="food-img">
+                            Tomato Bruschetta - $7.99
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu-category">
+                    <h3>Main Courses</h3>
+                    <ul>
+                        <li class="menu-item">
+                            <img src="https://thumbs.dreamstime.com/z/grilled-salmon-couscous-28881960.jpg?ct=jpeg" alt="Grilled Salmon" class="food-img">
+                        Grilled Salmon - $18.99
+                        </li>
+                        <li class="menu-item">
+                            <img src="https://thumbs.dreamstime.com/z/top-view-bowl-containing-fettuccine-chicken-alfredo-pasta-spinach-presented-beautifully-ready-to-be-served-top-view-347707461.jpg?ct=jpeg" alt="Chicken Alfredo" class="food-img">
+                            Chicken Alfredo - $15.99
+                        </li>
+                        <li class="menu-item">
+                            <img src="https://thumbs.dreamstime.com/z/grilled-pork-ribs-served-corn-fat-junk-food-delicious-shovel-top-view-restaurant-menu-photo-chinese-cuisine-88172185.jpg?ct=jpeg" alt="BBQ Ribs" class="food-img">
+                            BBQ Ribs - $17.99
+                        </li>
+                        <liv class="menu-item">
+                            <img src="https://thumbs.dreamstime.com/z/hamburger-double-burger-cheese-bacon-tomato-lettuce-onion-rings-isolated-out-focus-wooden-fire-background-159205398.jpg?ct=jpeg" alt="Double Bacon Cheese Burger" class="food-img">
+                            Double Bacon Cheese Burger - $18.99
+                        </liv>
+                        <li class="menu-item">
+                            <img src="https://thumbs.dreamstime.com/z/thick-pan-personal-sized-deep-dish-pizza-served-wooden-cutting-board-isolated-white-ok-352939278.jpg?ct=jpeg" alt="personal pan Pepperoni Pizza" class="food-img">
+                            Personal pan Pepperoni Pizza - $16.99
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-category">
+                    <h3>Desserts</h3>
+                    <ul>
+                        <li class="menu-item">
+                            <img src="https://thumbs.dreamstime.com/z/classic-new-york-style-cheesecake-cracker-creamy-filling-raspberry-sauce-fresh-berries-ai-generated-graham-crust-rich-279790137.jpg?ct=jpeg" alt="New York-styleCheesecake" class="food-img">
+                            Cheesecake - $6.99
+                        </li>
+                        <li class="menu-item">
+                                        <img src="https://thumbs.dreamstime.com/z/delicious-layers-moist-chocolate-cake-covered-rich-ganache-steaming-hot-topped-chips-351199657.jpg?ct=jpeg" alt="Mini Triple-decker Chocolate Cake" class="food-img">
+                                        Mini Triple-decker Chocolate Cake - $12.99
+                                    </li>
+                                    <li class="menu-item">
+                                        <img src="https://thumbs.dreamstime.com/z/artisan-ice-cream-shop-home-made-italian-gelato-expositor-artisan-ice-cream-shop-home-made-italian-gelato-expositor-165738269.jpg?ct=jpeg" alt="Italian Gelato" class="food-img">
+                                        Italian Gelato - $8.99
+                                    </li>
+
+                                    <div class="menu-category"></div>
+                                <h3>Drinks</h3>
+                                <ul>
+                                    <li class="menu-item">
+                                        <img src="https://www.shutterstock.com/shutterstock/photos/2498159033/display_1500/stock-photo-mojito-cocktail-with-fresh-lemon-mint-and-ice-refreshing-citrus-lemonade-drink-on-a-light-2498159033.jpg" alt="Lemonade" class="food-img">
+                                        Lemonade - $4.99
+                                        </li>
+                                    <li class="menu-item">
+                                        <img src="https://www.shutterstock.com/shutterstock/photos/1961604553/display_1500/stock-photo-cold-brew-hibiscus-ice-tea-with-raspberry-and-mint-selective-focus-shallow-depth-of-field-1961604553.jpg" alt="Cold-brewed Hibiscus Iced Tea" class="food-img">
+                                        Cold-brewed Hibiscus Iced Tea - $6.99
+                                        </li>
+                                    <li class="menu-item">
+                                        <img src="https://www.shutterstock.com/shutterstock/photos/2468714947/display_1500/stock-photo-pouring-milk-in-to-an-ice-coffee-against-a-dark-background-2468714947.jpg" alt="Iced Coffee" class="food-img">
+                                        Iced Coffee - $5.99
+                                        </li>
+                                    <li class="menu-item">
+                                        <img src="https://www.shutterstock.com/shutterstock/photos/2530652315/display_1500/stock-photo-iced-dalgona-coffee-whipped-instant-coffee-in-a-glass-with-ice-on-a-wooden-board-on-a-light-2530652315.jpg" alt="Iced Latte" class="food-img">
+                                        Iced Latte - $7.99
+                                    </li>
+                                    <li class="menu-item">
+                                        <img src="https://www.shutterstock.com/shutterstock/photos/1659778/display_1500/stock-photo-coffee-drink-with-heart-and-love-1659778.jpg" alt="Coffee" class="food-img">
+                                        Coffee - $6.99
+                                    </li>
+                                    <li class="menu-item">
+                                        <img src="https://www.shutterstock.com/shutterstock/photos/1930334129/display_1500/stock-photo-bangkok-thailand-march-coca-cola-can-and-ice-soft-drink-cans-on-ice-in-the-bucket-1930334129.jpg" alt="Soft Drinks" class="food-img">
+                                        Soft Drinks - $3.99
+                                    </li>
+                                    <li class="menu-item">
+                                        <img src="https://www.shutterstock.com/shutterstock/photos/2300719035/display_1500/stock-photo-illustrative-editorial-of-premium-global-bottled-water-evian-icelandic-volvic-vittel-harrogate-2300719035.jpg" alt="Bottle Water" class="food-img">
+                                        Bottle Water - $2.99
+                                    </li>
+                                    
+                                    <div class="menu-category">
+                                        <h3>Alcoholic Beverages</h3>
+                                        <ul>
+                                            <li class="menu-item">
+                                                <img src="https://www.shutterstock.com/shutterstock/photos/2605986613/display_1500/stock-photo-refreshing-pint-of-beer-with-bright-foam-and-cold-drops-standing-in-front-of-bar-taps-and-shelves-2605986613.jpg" alt="Beer" class="food-img">
+                                                Beer - $5.99
+                                            </li>
+                                            <li class="menu-item">
+                                                <img src="https://www.shutterstock.com/shutterstock/photos/2484807185/display_1500/stock-photo-a-bottle-of-red-wine-sits-on-a-wooden-table-accompanied-by-a-bunch-of-grapes-and-two-glasses-2484807185.jpg" alt="Wine" class="food-img">
+                                                Wine - $8.99
+                                            </li>
+                                            <li class="menu-item">
+                                                <img src="https://www.shutterstock.com/shutterstock/photos/1765355882/display_1500/stock-photo-set-of-various-cocktails-with-shaker-on-black-background-1765355882.jpg" alt="Cocktails" class="food-img">
+                                                Cocktails - $10.99
+                                            </li>
+                                            <li class="menu-item">
+                                                <img src="https://www.shutterstock.com/shutterstock/photos/576645844/display_1500/stock-photo-various-alcohol-bottles-in-a-bar-back-light-all-logos-removed-576645844.jpg" alt="Hard Liquors" class="food-img">
+                                                Hard Liquors - $12.99
+                                            </li>
+                                            <li class="menu-item">
+                                                <img src="https://www.shutterstock.com/shutterstock/photos/2505231923/display_1500/stock-photo-red-strawberry-cocktails-and-mocktails-with-fruits-and-berries-in-glasses-beige-background-hard-2505231923.jpg" alt="Mocktails" class="food-img">
+                                        
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="location-container" id="location" aria-labelledby="location-heading">
+                    <header class="header">
+                        <h2 id="location-heading">Event Center</h2>
+                        <p>Located near the Sports Center</p>
+                    </header>
+            <div class="map-container" role="img" aria-label="Map showing Event Center location">
+                <div class="map-placeholder">
+                    <div class="map-icon"></div>
+                    <div class="map-text">123 Event Center Drive</div>
+                </div>
+            </div>
+            <div class="location-details">
+                <address class="address-section">
+                    <div class="address-label">Address</div>
+                    <div class="address-text">
+                        123 Event Center Drive<br>
+                        Celebration City, CA 12345
+                    </div>
+                </address>
+                <nav class="action-buttons" aria-label="Location actions">
+                    <a href="https://www.google.com/maps/search/?api=1&query=123+Event+Center+Drive,+Celebration+City,+CA+12345" 
+                       target="_blank" 
+                       class="btn btn-primary"
+                       rel="noopener"
+                       onclick="trackClick('directions')">
+                        Get Directions
+                    </a>
+                    <a href="https://www.google.com/maps/place/123+Event+Center+Drive,+Celebration+City,+CA+12345" 
+                       target="_blank" 
+                       class="btn btn-secondary"
+                       rel="noopener"
+                       onclick="trackClick('view_map')">
+                        View on Map
+                    </a>
+                </nav>
+                <section class="contact-us" id="contact">
+                    <h2>Contact Us</h2>
+                    <div class="contact-info">
+                        <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                        <p>Email: <a href="mailto:info@eventcenter.com">info@eventcenter.com</a></p>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        &copy; 2025 Event Center. All rights reserved.
+    </footer>
+    <script>
+        function trackClick(action) {
+            console.log('Location action clicked:', action);
+        }
+        document.querySelectorAll('.action-buttons a').forEach(button => {
+            button.addEventListener('click', function(event) {
+                const action = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                trackClick(action);
+            });
+        });
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const query = document.querySelector('.search-bar input').value;
+            console.log('Search query:', query);
+        });
+        document.querySelector('.site-logo').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = 'index.html';
+        });
+        document.querySelector('.navbar').addEventListener('click', function(event) {
+            if (event.target.tagName === 'A') {
+                const sectionId = event.target.getAttribute('href').substring(1);
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
